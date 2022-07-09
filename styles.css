@@ -1,0 +1,73 @@
+body {
+	color: #222;
+	background-color: #CCC;
+}
+
+header {
+	text-align: center;
+}
+
+footer {
+	padding: 1em;
+	border-radius: 3px;
+	color: #ddd;
+	background-color: #222;
+	text-align: center;
+	font-size: 85%;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	/*color: Red;*/
+}
+
+table, th, td {
+}
+
+th, td {
+	/*padding: 3px;*/
+	height: 2em;
+	border: 1px solid DarkSlateGray;
+}
+
+th {
+	background-color: LightSeaGreen;
+}
+
+td {
+	text-align: center;
+	background-color: LightGreen;
+}
+
+button {
+	min-width: 6em;
+	height: 2em;
+	color: White;
+	background-color: Blue;
+	border-radius: 6px;
+}
+
+h3 {
+	margin-bottom: 6px;
+	background-color: LightYellow;
+}
+
+p {
+}
+
+output {
+	color: Blue;
+}
+
+#results {
+	margin: 1em 0;
+	border: 1px solid black;
+	padding: 0 1em;
+	border-radius: 6px;
+	background-color: #E1E1E1;
+}
+
+.status {
+	color: Red;
+}

@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>API/AJAX/PHP/CURL/JSON example</title>
+		<meta charset="utf-8">
+		<meta name="description" content="API/AJAX/PHP/CURL/JSON example">
+		<meta name="author" content="mike s">
+		<link rel="stylesheet" href="styles.css">
+
+		<!-- <script type="application/javascript" src="libs/js/jquery-2.2.3.min.js"></script> -->
+		<!-- <script src="jquery-3.6.0.min.js"></script> -->
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<header>
+			<h1>API/AJAX/PHP/CURL/JSON Demo Project</h1>
+		</header>
+		<table id="mainTable">
+			<thead>
+				<tr>
+					<th>API Name</th>
+					<th>API Description</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Country Info API</td>
+					<td>
+						Choose values to check country
+						<select id="selCountry">
+							<option value="GB">Great Britain</option>
+							<option value="FR">France</option>
+							<option value="DE">Germany</option>
+							<option value="US">USA</option>
+						</select>
+						<select id="selLanguage">
+							<option value="en">English</option>
+							<option value="fr">Francais</option>
+							<option value="de">Deutsche</option>
+						</select>
+					</td>
+					<td><button id="btnRun0">Run</button></td>
+					    <!-- <button id="btnRun0">countryInfo</button> -->
+				</tr>
+				<tr>	<!-- get TimeZone-->
+					<td>Time Zone API</td>
+					<td>
+						<label>Choose values to check time zone</label>
+						<select id="selLat1">
+							<option value="47">47deg</option>
+							<option value="34">34deg</option>
+							<option value="28">28deg</option>
+						</select>
+						<select id="selLan1">
+							<option value="10">10deg</option>
+							<option value="69">69deg</option>
+							<option value="77">77deg</option>
+						</select>
+					</td>
+					<td><button id="btnRun1">Run</button></td>
+				</tr>
+				<tr>	<!-- get Ocean-->
+					<td>Ocean API</td>
+					<td>
+						<label>Choose values to check distance to nearest ocean</label>
+						<select id="selLat2">
+							<option value="43">47deg</option>
+							<option value="34">34deg</option>
+							<option value="28">28deg</option>
+						</select>
+						<select id="selLan2">
+							<option value="27">10deg</option>
+							<option value="69">69deg</option>
+							<option value="77">77deg</option>
+						</select>
+					</td>
+					<td><button id="btnRun2">Run</button></td>
+				</tr>
+				<tr>	<!-- get ICAO-->
+					<td>Weather ICAO API</td>
+					<td>
+						<label>Choose ICAO station to check the weather</label>
+						<select id="selStation">
+							<option value="EGBB">Birmingham International</option>
+							<option value="EGVN">Brize Norton RAF</option>
+							<option value="EDDB">Berlin Schönefeld Airport</option>
+							<option value="EPWA">Warsaw Chopin Airport</option>
+						</select>
+					</td> 
+					<td><button id="btnRun3">Run</button></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h2>Your results are here:</h2>
+		<div id="results">
+			<p>
+				<h3>Country Info API:</h3>
+				Continent: <span id="txtContinent">?</span><br />
+				Country Name: <span id="txtName">?</span><br />
+			</p>
+			<p>
+				<!-- table Timezone results: -->
+				<h3>Time Zone API:</h3>
+				<span>Country Name:</span>	<span id="txtCName"></span><br>
+				<span>Country Code:</span>	<span id="txtCode"></span><br>
+				<span>Date & Time:</span>	<span id="txtTime"></span><br>
+				<span>Time Zone:</span>		<span id="txtTimeZone"></span><br>
+				<span>GMT Offset:</span>	<span id="txtGMT"></span><br>
+			</p>
+			<p>
+				<!-- table Ocean results: -->
+				<h3>Ocean API:</h3>
+				<span>Ocean Name:</span>	<span id="txtOceanName"></span><br>
+				<span>Geo ID:</span>		<span id="txtGeocode"></span><br>
+				<span>Distance:</span>		<span id="txtDistance"></span><br>
+				<span>Status:</span>		<span id="txtStatus2" class="status"></span>
+			</p>
+			<p>
+				<!--table ICAO weather results: -->
+				<h3>Weather ICAO API:</h3>
+				<span>Station Name:</span>	<span id="txtStation"></span><br>
+				<span>Clouds:</span>		<span id="txtClouds"></span><br>
+				<span>Temperature:</span>	<span id="txtTemperature"></span><br>
+				<span>Wind:</span>			<span id="txtWind"></span><br>
+				<span>Date & Time:</span>	<span id="txtDateTime"></span><br>
+				<span>Status:</span>		<span id="txtStatus3" class="status"></span>
+			</p>
+			<hr>
+			<p>
+				Response Time: <output id="responseTime">???</output>
+			</p>
+		</div>
+
+<!-- 
+			<table>
+				<tr>
+					<td>Continent:</td>
+					<td id="txtContinent"></td>
+				</tr>
+				<tr>
+					<td>Capital:</td>
+					<td id="txtCapital"></td>
+				</tr>
+				<tr>
+					<td>Languages:</td>
+					<td id="txtLanguages"></td>
+				</tr>
+				<tr>
+					<td>Population:</td>
+					<td id="txtPopulation"></td>
+				</tr>
+				<tr>
+					<td>Area (km<sup>2</sup>):</td>
+					<td id="txtArea"></td>
+				</tr>
+			</table>
+
+			<hr>
+
+			<!-- table timezone results
+			<table>
+				<tr>
+					<td>Country name:</td>
+					<td id="txtCountry"></td>
+				</tr>
+
+				<tr>
+					<td>Country code:</td>
+					<td id="txtCode"></td>
+				</tr>
+				<tr>
+					<td>Time zone id:</td>
+					<td id="txtTimeZone"></td>
+				</tr>
+				<tr>
+					<td>Actual time: 
+					</td>
+					<td id="txtTime"></td>
+				</tr>
+				<tr>
+					<td>GMT offset: 
+					</td>
+					<td id="txtGMT"></td>
+				</tr>
+			</table>
+			<hr>
+
+			<!-- table ocean results
+			<table>
+				<tr>
+					<td>Ocean name: 
+					</td>
+					<td id="txtOceanName"></td>
+				</tr>
+				<tr>
+					<td>Geo code: 
+					</td>
+					<td id="txtGeocode"></td>
+				</tr>
+				<tr>
+					<td>Distance: 
+					</td>
+					<td id="txtDistance"></td>
+				</tr>
+			</table>
+			<hr>
+
+			<!--table ICAO weather results
+			<table>
+				<tr>
+					<td>Station name: 
+					</td>
+					<td id="txtStation"></td>
+				</tr>
+				<tr>
+					<td>Clouds: 
+					</td>
+					<td id="txtClouds"></td>
+				</tr>
+				<tr>
+					<td>Temperature: 
+					</td>
+					<td id="txtTemperature"></td>
+				</tr>
+				<tr>
+					<td>Wind speed: 
+					</td>
+					<td id="txtWind"></td>
+				</tr>
+				<tr>
+					<td>Date&time group: 
+					</td>
+					<td id="txtDateTime"></td>
+				</tr>
+			</table>
+			<hr> -->
+
+		<footer>
+			&copy; 2022 by Michał Stasiak
+		</footer>
+	</body>
+	<script type="application/javascript" src="app.js"></script>
+</html>
